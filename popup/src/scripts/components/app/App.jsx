@@ -19,14 +19,12 @@ class App extends Component {
   }
 
   componentDidMount () {
-    const desc = window.localStorage.getItem('desc');
     const pic = window.localStorage.getItem('pic');
 
     this.getInfoFromSite();
 
     this.setState({
       textArea: {
-        desc: desc ? desc : '',
         pic: pic ? pic : '',
       },
     });
@@ -67,14 +65,12 @@ class App extends Component {
   //dispatches the action
   addMarker = () => {
     if (this.state.latLng) {
-      const desc = document.getElementById('desc').value;
       const pic = document.getElementById('pic').value;
       chrome.tabs.getSelected(null, tab => {
 
         this.props.addMarker({
           url: tab.url,
           title: tab.title,
-          desc: desc,
           pic: pic,
           place: this.state.place,
           latLng: this.state.latLng,
@@ -82,7 +78,6 @@ class App extends Component {
         });
 
         const clearField = {target: {value: ''}} ;
-        this.updateTextArea('desc', clearField);
         this.updateTextArea('pic', clearField);
 
       });
@@ -145,7 +140,6 @@ class App extends Component {
         />
 
         <textarea id="title">{this.state.pageTitle}</textarea>
-        <textarea id="desc" value={this.state.textArea.desc} onChange={(e) => this.updateTextArea('desc', e)} placeholder="Add an desc by placing its url here..."/>
         <textarea id="pic" value={this.state.textArea.pic} onChange={(e) => this.updateTextArea('pic', e)} placeholder="Add a pic by placing its url here..."/>
 
         <div id="buttons">
