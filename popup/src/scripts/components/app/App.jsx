@@ -14,6 +14,7 @@ class App extends Component {
     super(props);
     this.state = {
       textArea: {},
+      pageTitle: '',
     };
   }
 
@@ -21,11 +22,21 @@ class App extends Component {
     const desc = window.localStorage.getItem('desc');
     const pic = window.localStorage.getItem('pic');
 
+    this.getInfoFromSite();
+
     this.setState({
       textArea: {
         desc: desc ? desc : '',
         pic: pic ? pic : '',
       },
+    });
+  }
+
+  getInfoFromSite = () => {
+    chrome.tabs.getSelected(null, tab => {
+      this.setState({
+        pageTitle: tab.title,
+      });
     });
   }
 
@@ -133,6 +144,7 @@ class App extends Component {
           placeholder="find location"
         />
 
+        <textarea id="title">{this.state.pageTitle}</textarea>
         <textarea id="desc" value={this.state.textArea.desc} onChange={(e) => this.updateTextArea('desc', e)} placeholder="Add an desc by placing its url here..."/>
         <textarea id="pic" value={this.state.textArea.pic} onChange={(e) => this.updateTextArea('pic', e)} placeholder="Add a pic by placing its url here..."/>
 
