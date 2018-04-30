@@ -78,6 +78,7 @@ class App extends Component {
           place: this.state.place,
           latLng: this.state.latLng,
           date: this.state.date,
+          tags: this.state.tags,
         });
 
         const clearField = {target: {value: ''}} ;
