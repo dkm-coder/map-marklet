@@ -116,6 +116,12 @@ class App extends Component {
     });
   }
 
+  updatePageTitle = (e) => {
+    this.setState({
+      pageTitle: e.target.value,
+    });
+  }
+
   handleAddition = (tag) => {
     this.setState({
       tags: [
@@ -156,7 +162,7 @@ class App extends Component {
           placeholder="find location"
         />
 
-        <textarea id="title" defaultValue={this.state.pageTitle} onChange={(e) => this.updateTextArea('pageTitle', e)} />
+        <textarea id="title" defaultValue={this.state.pageTitle} onChange={(e) => this.updatePageTitle(e)} />
 
         <ReactTags
           tags={this.state.tags}
