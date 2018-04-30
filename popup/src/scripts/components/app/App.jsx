@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import {GoogleApiWrapper} from 'google-maps-react';
 import { WithContext as ReactTags } from 'react-tag-input';
+import {COUNTRIES} from './Countries';
 
 import GoogleMap from './GoogleMap';
 
@@ -16,6 +17,7 @@ class App extends Component {
       textArea: {},
       pageTitle: '',
       tags: [],
+      suggestions: COUNTRIES,
     };
   }
 
@@ -158,6 +160,7 @@ class App extends Component {
 
         <ReactTags
           tags={this.state.tags}
+          suggestions={this.state.suggestions}
           handleDelete={this.handleDelete.bind(this)}
           handleAddition={this.handleAddition.bind(this)} />
 
