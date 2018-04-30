@@ -139,7 +139,7 @@ class App extends Component {
           placeholder="find location"
         />
 
-        <textarea id="title" onChange={(e) => this.updateTextArea('pageTitle', e)}>{this.state.pageTitle}</textarea>
+        <textarea id="title" defaultValue={this.state.pageTitle} onChange={(e) => this.updateTextArea('pageTitle', e)} />
         <textarea id="pic" value={this.state.textArea.pic} onChange={(e) => this.updateTextArea('pic', e)} placeholder="Add a pic by placing its url here..."/>
 
         <div id="buttons">
