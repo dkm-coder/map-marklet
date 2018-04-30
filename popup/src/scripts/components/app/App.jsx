@@ -3,9 +3,9 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import {GoogleApiWrapper} from 'google-maps-react';
+import { WithContext as ReactTags } from 'react-tag-input';
 
 import GoogleMap from './GoogleMap';
-
 
 import './styles.scss';
 
@@ -15,6 +15,7 @@ class App extends Component {
     this.state = {
       textArea: {},
       pageTitle: '',
+      tags: [],
     };
   }
 
@@ -113,12 +114,26 @@ class App extends Component {
     });
   }
 
+  handleAddition = (tag) => {
+    this.setState({
+      tags: [
+        ...this.state.tags,
+        ...[tag],
+      ],
+    });
+  }
+
+  handleDelete = (i) => {
+    this.setState({
+      tags: this.state.tags.filter((tag, index) => index !== i),
+    });
+  }
+
   render () {
 
     if (!this.props.loaded) {
       return (<div>Loading...</div>);
     }
-
 
     return (
       <div className="app">
@@ -140,6 +155,12 @@ class App extends Component {
         />
 
         <textarea id="title" defaultValue={this.state.pageTitle} onChange={(e) => this.updateTextArea('pageTitle', e)} />
+
+        <ReactTags
+          tags={this.state.tags}
+          handleDelete={this.handleDelete.bind(this)}
+          handleAddition={this.handleAddition.bind(this)} />
+
         <textarea id="pic" value={this.state.textArea.pic} onChange={(e) => this.updateTextArea('pic', e)} placeholder="Add a pic by placing its url here..."/>
 
         <div id="buttons">
