@@ -3,9 +3,10 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import {GoogleApiWrapper} from 'google-maps-react';
+import { WithContext as ReactTags } from 'react-tag-input';
+import {COUNTRIES} from './Countries';
 
 import GoogleMap from './GoogleMap';
-
 
 import './styles.scss';
 
@@ -14,18 +15,29 @@ class App extends Component {
     super(props);
     this.state = {
       textArea: {},
+      pageTitle: '',
+      tags: [],
+      suggestions: COUNTRIES,
     };
   }
 
   componentDidMount () {
-    const desc = window.localStorage.getItem('desc');
     const pic = window.localStorage.getItem('pic');
+
+    this.getInfoFromSite();
 
     this.setState({
       textArea: {
-        desc: desc ? desc : '',
         pic: pic ? pic : '',
       },
+    });
+  }
+
+  getInfoFromSite = () => {
+    chrome.tabs.getSelected(null, tab => {
+      this.setState({
+        pageTitle: tab.title,
+      });
     });
   }
 
@@ -56,14 +68,12 @@ class App extends Component {
   //dispatches the action
   addMarker = () => {
     if (this.state.latLng) {
-      const desc = document.getElementById('desc').value;
       const pic = document.getElementById('pic').value;
       chrome.tabs.getSelected(null, tab => {
 
         this.props.addMarker({
           url: tab.url,
           title: tab.title,
-          desc: desc,
           pic: pic,
           place: this.state.place,
           latLng: this.state.latLng,
@@ -71,7 +81,6 @@ class App extends Component {
         });
 
         const clearField = {target: {value: ''}} ;
-        this.updateTextArea('desc', clearField);
         this.updateTextArea('pic', clearField);
 
       });
@@ -107,12 +116,26 @@ class App extends Component {
     });
   }
 
+  handleAddition = (tag) => {
+    this.setState({
+      tags: [
+        ...this.state.tags,
+        ...[tag],
+      ],
+    });
+  }
+
+  handleDelete = (i) => {
+    this.setState({
+      tags: this.state.tags.filter((tag, index) => index !== i),
+    });
+  }
+
   render () {
 
     if (!this.props.loaded) {
-      return <div>Loading...</div>;
+      return (<div>Loading...</div>);
     }
-
 
     return (
       <div className="app">
@@ -133,7 +156,14 @@ class App extends Component {
           placeholder="find location"
         />
 
-        <textarea id="desc" value={this.state.textArea.desc} onChange={(e) => this.updateTextArea('desc', e)} placeholder="Add an desc by placing its url here..."/>
+        <textarea id="title" defaultValue={this.state.pageTitle} onChange={(e) => this.updateTextArea('pageTitle', e)} />
+
+        <ReactTags
+          tags={this.state.tags}
+          suggestions={this.state.suggestions}
+          handleDelete={this.handleDelete.bind(this)}
+          handleAddition={this.handleAddition.bind(this)} />
+
         <textarea id="pic" value={this.state.textArea.pic} onChange={(e) => this.updateTextArea('pic', e)} placeholder="Add a pic by placing its url here..."/>
 
         <div id="buttons">

@@ -15,6 +15,7 @@
     "react-dom": "^15.6.1",
     "react-facebook-login": "^3.6.2",
     "react-redux": "^4.4.8",
+    "react-tag-input": "^5.0.1",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "uuid": "^3.1.0"

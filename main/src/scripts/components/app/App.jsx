@@ -131,7 +131,7 @@ class App extends Component {
 
   render () {
     if (!this.props.loaded) {
-      return <div>Loading...</div>;
+      return (<div>Loading...</div>);
     }
 
     return (
