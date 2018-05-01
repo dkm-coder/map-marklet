@@ -80,14 +80,14 @@ class App extends Component {
 
         this.props.addMarker({
           url: tab.url,
-          title: tab.title,
+          title: this.state.pageTitle,
           place: this.state.place,
           latLng: this.state.latLng,
           date: this.state.date,
           tags: this.state.tags,
           pic: this.state.pic,
         });
-        
+
       });
     }
   };
