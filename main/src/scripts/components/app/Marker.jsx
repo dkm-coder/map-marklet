@@ -27,8 +27,7 @@ class Marker extends Component {
 
     //content window
     const contentString =
-      `<h2><a href="${markerInfo.url}" target="_blank">${markerInfo.title}</a></h2>` +
-      `<div>${markerInfo.desc}</div>`;
+      `<h2><a href="${markerInfo.url}" target="_blank">${markerInfo.title}</a></h2>`;
     const infowindow = new google.maps.InfoWindow({
       content: contentString,
     });
