@@ -6,6 +6,7 @@ import {GoogleApiWrapper} from 'google-maps-react';
 
 import Marker from './Marker';
 import GoogleMapStyle from './styles';
+import ShareBt from 'react-icons/lib/io/android-share';
 
 import './styles.scss';
 
@@ -144,8 +145,14 @@ class App extends Component {
     }
 
     return (
-      <div ref="map" className="mapStyle">
+      <div className="mainContainer">
+        <div ref="map" className="mapStyle">
+        </div>
+        <div className="overlay">
+          <a href="#"><ShareBt size={40} color="#C54E4E"/></a>
+        </div>
       </div>
+
     );
   }
 }

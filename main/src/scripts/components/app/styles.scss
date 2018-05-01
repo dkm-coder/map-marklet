@@ -15,11 +15,26 @@ img {
   width: 500px;
 }
 
+.mainContainer {
+  display: flex;
+  z-index: 0;
+}
 
 .mapStyle {
+  flex: 1;
+  z-index: 1;
   width: 100vw;
-  height: 100vh;
+  height: 90vh;
   margin: 0;
+}
+
+.overlay {
+  z-index: 10;
+  position: absolute;
+
+  right: 20px;
+  bottom: 12px;
+  // background: rgba(0,0,0,0.3);
 }
 
 .gm-style-iw {
