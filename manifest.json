@@ -28,6 +28,7 @@
   "permissions": [
     "tabs",
     "identity",
+    "identity.email",
      "*://*.google.com/*",
     "storage"
   ],
