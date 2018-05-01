@@ -164,7 +164,7 @@ class App extends Component {
           handleDelete={this.handleDelete.bind(this)}
           handleAddition={this.handleAddition.bind(this)} />
 
-        <img src={this.state.pic} alt={this.state.pageTitle} height="150" width="150" />
+        <img id="og-image" src={this.state.pic} alt={this.state.pageTitle} height="70" />
 
         <div id="buttons">
           <button onClick={this.addMarker}>Add Marker</button>
