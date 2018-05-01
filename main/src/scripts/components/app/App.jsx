@@ -109,7 +109,6 @@ class App extends Component {
 
             '<div class="iw-body">' +
               `<img src="${m.pic}">` +
-              `<div class="iw-desc">${m.desc}</div>` +
             '</div>' +
 
           '</div>';
