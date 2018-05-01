@@ -88,6 +88,14 @@ class App extends Component {
           pic: this.state.pic,
         });
 
+        // clear fields
+        document.getElementById('title').value = '';
+        document.getElementById('og-image').hidden = 1;
+        const tagsToHide = document.getElementsByClassName('ReactTags__tag');
+        for (let i = 0; i < tagsToHide.length; i++) {
+          tagsToHide[i].hidden = 1;
+        }
+        document.getElementsByClassName('ReactTags__tagInputField')[0].value = '';
       });
     }
   };
