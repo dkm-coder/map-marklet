@@ -100,11 +100,21 @@ class App extends Component {
           title: m.title,
         });
 
+        let tagsToRender = [];
+        const tagsToMap = m.tags.forEach(tag => {
+          tagsToRender.push(tag.id);
+        });
+        tagsToRender = tagsToRender.join(', ');
+
         const contentString =
           '<div class="iw-container">' +
 
             '<div class="iw-title">' +
               `<h2><a href="${m.url}" target="_blank">${m.title}</a></h2>` +
+            '</div>' +
+
+            '<div class="iw-tags">' +
+              `<p>${tagsToRender}</p>` +
             '</div>' +
 
             '<div class="iw-body">' +
