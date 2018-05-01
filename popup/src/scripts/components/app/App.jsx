@@ -191,6 +191,7 @@ const mapDispatchToProps = (dispatch) => ({
       place: marker.place,
       latLng: marker.latLng,
       date: marker.date,
+      tags: marker.tags,
     },
   }),
 
