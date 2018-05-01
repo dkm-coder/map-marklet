@@ -14,29 +14,37 @@ class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      textArea: {},
       pageTitle: '',
       tags: [],
       suggestions: COUNTRIES,
+      pic: '',
     };
   }
 
   componentDidMount () {
-    const pic = window.localStorage.getItem('pic');
-
     this.getInfoFromSite();
-
-    this.setState({
-      textArea: {
-        pic: pic ? pic : '',
-      },
-    });
+    this.getSiteOgImg();
   }
 
   getInfoFromSite = () => {
     chrome.tabs.getSelected(null, tab => {
       this.setState({
         pageTitle: tab.title,
+      });
+    });
+  }
+
+  getSiteOgImg = () => {
+    const code = 'let meta = document.querySelector("meta[property=\'og:image\']");' +
+           'if (meta) meta = meta.getAttribute("content");' +
+           '({' +
+           '    ogImg: meta || ""' +
+           '});';
+    chrome.tabs.executeScript({ code: code }, results => {
+      if (!results) return;
+      const result = results[0];
+      this.setState({
+        pic: result.ogImg,
       });
     });
   }
@@ -68,22 +76,18 @@ class App extends Component {
   //dispatches the action
   addMarker = () => {
     if (this.state.latLng) {
-      const pic = document.getElementById('pic').value;
       chrome.tabs.getSelected(null, tab => {
 
         this.props.addMarker({
           url: tab.url,
           title: tab.title,
-          pic: pic,
           place: this.state.place,
           latLng: this.state.latLng,
           date: this.state.date,
           tags: this.state.tags,
+          pic: this.state.pic,
         });
-
-        const clearField = {target: {value: ''}} ;
-        this.updateTextArea('pic', clearField);
-
+        
       });
     }
   };
@@ -104,17 +108,6 @@ class App extends Component {
     // //set prop latLng as stringified version of the center obj
     marker.latLng = JSON.stringify(marker.center);
     this.props.deleteMarker(marker);
-  }
-
-  updateTextArea = (id, e) => {
-    this.setState({
-      textArea: {
-        ...this.state.textArea,
-        [id]: e.target.value,
-      },
-    }, () => {
-      window.localStorage.setItem(id, this.state.textArea[id]);
-    });
   }
 
   updatePageTitle = (e) => {
@@ -171,7 +164,7 @@ class App extends Component {
           handleDelete={this.handleDelete.bind(this)}
           handleAddition={this.handleAddition.bind(this)} />
 
-        <textarea id="pic" value={this.state.textArea.pic} onChange={(e) => this.updateTextArea('pic', e)} placeholder="Add a pic by placing its url here..."/>
+        <img src={this.state.pic} alt={this.state.pageTitle} height="150" width="150" />
 
         <div id="buttons">
           <button onClick={this.addMarker}>Add Marker</button>
