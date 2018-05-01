@@ -14,21 +14,37 @@ class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      textArea: {},
       pageTitle: '',
       tags: [],
       suggestions: COUNTRIES,
+      pic: '',
     };
   }
 
   componentDidMount () {
     this.getInfoFromSite();
+    this.getSiteOgImg();
   }
 
   getInfoFromSite = () => {
     chrome.tabs.getSelected(null, tab => {
       this.setState({
         pageTitle: tab.title,
+      });
+    });
+  }
+
+  getSiteOgImg = () => {
+    const code = 'let meta = document.querySelector("meta[property=\'og:image\']");' +
+           'if (meta) meta = meta.getAttribute("content");' +
+           '({' +
+           '    ogImg: meta || ""' +
+           '});';
+    chrome.tabs.executeScript({ code: code }, results => {
+      if (!results) return;
+      const result = results[0];
+      this.setState({
+        pic: result.ogImg,
       });
     });
   }
@@ -69,10 +85,9 @@ class App extends Component {
           latLng: this.state.latLng,
           date: this.state.date,
           tags: this.state.tags,
+          pic: this.state.pic,
         });
-
-        const clearField = {target: {value: ''}} ;
-
+        
       });
     }
   };
@@ -148,6 +163,8 @@ class App extends Component {
           suggestions={this.state.suggestions}
           handleDelete={this.handleDelete.bind(this)}
           handleAddition={this.handleAddition.bind(this)} />
+
+        <img src={this.state.pic} alt={this.state.pageTitle} height="150" width="150" />
 
         <div id="buttons">
           <button onClick={this.addMarker}>Add Marker</button>
