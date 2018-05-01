@@ -162,7 +162,6 @@ const mapDispatchToProps = (dispatch) => ({
     marker: {
       url: marker.url,
       title: marker.title,
-      desc: marker.desc,
       pic: marker.pic,
       place: marker.place,
       latLng: marker.latLng,
