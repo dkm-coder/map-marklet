@@ -1,3 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
+
+body {
+  background-color: #f6f3e8;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+}
+
 h2 {
   margin: 0;
 }
@@ -15,26 +23,23 @@ img {
   width: 500px;
 }
 
-.mainContainer {
-  display: flex;
-  z-index: 0;
-}
-
 .mapStyle {
   flex: 1;
   z-index: 1;
   width: 100vw;
   height: 90vh;
   margin: 0;
+  display: inline-block;
 }
 
 .overlay {
+  align-items: center;
   z-index: 10;
   position: absolute;
-
-  right: 20px;
-  bottom: 12px;
-  // background: rgba(0,0,0,0.3);
+  display: flex;
+  bottom: 15px;
+  left: 10px;
+  height: 40px;
 }
 
 .gm-style-iw {
@@ -52,6 +57,37 @@ img {
 
 .iw-title {
   margin: 5px 0 10px 0;
+}
+
+#shareableLink input {
+  background-color: #ffffffa1;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  font-size: 1.2em;
+  height: 31px;
+  margin: 0;
+  margin: 5px;
+  outline: none;
+  padding: 5px;
+  width: 280px;
+}
+
+#shareableLink button {
+  background-color: #a5b076;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+  flex-grow: 1;
+  font-size: 1.1em;
+  font-weight: 500;
+  height: 40px;
+  margin: 5px;
+  outline: none;
+}
+
+#copied {
+  color: #a5b076;
 }
 
 //constrain infowindow size
