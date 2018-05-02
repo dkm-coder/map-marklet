@@ -3,10 +3,11 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {connect} from 'react-redux';
 import {GoogleApiWrapper} from 'google-maps-react';
+import ShareBt from 'react-icons/lib/io/android-share';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 import Marker from './Marker';
 import GoogleMapStyle from './styles';
-import ShareBt from 'react-icons/lib/io/android-share';
 
 import './styles.scss';
 
@@ -21,7 +22,16 @@ class App extends Component {
         lat : lat,
         lng: lng,
       },
+      linkValue: '',
+      copied: false,
     };
+  }
+
+  componentDidMount () {
+    chrome.identity.getProfileUserInfo((data) => {
+      this.name = data.email.split('@')[0];
+      this.shareableLink = `http://192.168.1.229:3000/${this.name}`;
+    });
   }
 
   componentDidUpdate (prevProps, prevState) {
@@ -139,25 +149,33 @@ class App extends Component {
     }
   }
 
-  // Function that creates a shareable link
   getShareableLink () {
-    chrome.identity.getProfileUserInfo((data) => {
-      const name = data.email.split('@')[0];
-      console.log(`Shareable link: http://www.baseUrlOfMapMarklet/${name}`);
-    });
+    document.getElementById('shareableLink').hidden = 0;
   }
 
   render () {
     if (!this.props.loaded) {
       return (<div>Loading...</div>);
     }
-
     return (
       <div className="mainContainer">
         <div ref="map" className="mapStyle">
         </div>
         <div className="overlay">
-          <a href="#" onClick={this.getShareableLink}><ShareBt size={40} color="#C54E4E"/></a>
+          <a href="#" onClick={this.getShareableLink}><ShareBt size={40} color="#de7a6e"/></a>
+          <div id="shareableLink" hidden>
+            <input value={this.shareableLink}
+              onChange={({target: {linkValue}}) => this.setState({linkValue, copied: false})} />
+
+            <CopyToClipboard text={this.shareableLink}
+              onCopy={() => this.setState({copied: true})}>
+              <button>Copy</button>
+            </CopyToClipboard>
+
+            {this.state.copied ? <span id="copied">Copied.</span> : null}
+
+          </div>
+
         </div>
       </div>
 
