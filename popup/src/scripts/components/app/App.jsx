@@ -35,10 +35,10 @@ class App extends Component {
   }
 
   getSiteOgImg = () => {
-    const code = 'let meta = document.querySelector("meta[property=\'og:image\']");' +
+    const code = 'var meta = document.querySelector("meta[property=\'og:image\']");' +
            'if (meta) meta = meta.getAttribute("content");' +
            '({' +
-           '    ogImg: meta || ""' +
+           '    ogImg: meta' +
            '});';
     chrome.tabs.executeScript({ code: code }, results => {
       if (!results) return;
