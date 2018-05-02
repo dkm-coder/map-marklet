@@ -56,10 +56,12 @@ body {
 }
 
 #pic {
-  height: 40px;
+  height: 90px;
+  margin-right: 5px;
+  overflow: hidden;
   padding: 5px;
   text-align: center;
-  width: 100vw;
+  width: 130px;
 }
 
 .og-image {
@@ -175,7 +177,7 @@ button {
 }
 
 .add-bt {
-  background-color: #e37d71;
+  background-color: #de7a6e;
 }
 
 .view-bt {
