@@ -1,6 +1,154 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
+
 body {
-  background-color: #ebe3cd;
+  // background-color: #ebe3cd;
+  // background-color: #f4efe3;
+  background-color: #f6f3e8;
+  font-family: 'Roboto', sans-serif;
   margin: 0;
+}
+
+.mapStyle {
+  height: 380px;
+  margin: 0;
+  width: 550px;
+}
+
+.app {
+  height: 550px;
+  width: 550px;
+}
+
+#findCenter {
+  background-color: #ffffffd6;
+  border: none;
+  border-radius: 2px;
+  height: 24px;
+  left: 120px;
+  outline: none;
+  padding: 2px 6px;
+  position: absolute;
+  top: 10px;
+  width: 300px;
+}
+
+#container {
+  display: flex;
+  flex-direction: row;
+  height: 165px;
+  margin-top: 5px;
+}
+
+#sub-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+}
+
+#title {
+  background-color: #fff;
+  border: 0;
+  border-radius: 3px;
+  font-size: 1.2em;
+  margin: 5px;
+  outline: none;
+  padding: 5px;
+  resize: none;
+  width: 70vw;
+}
+
+#pic {
+  height: 40px;
+  padding: 5px;
+  text-align: center;
+  width: 100vw;
+}
+
+.og-image {
+  border-radius: 1px;
+  height: 95px;
+}
+
+.gm-fullscreen-control {
+  display: none!important;
+}
+
+/* Styles for React Tags*/
+.ReactTags__tags {
+  display: flex;
+  flex-direction: column-reverse;
+  width: 70vw;
+}
+
+/* Styles for the input */
+.ReactTags__tagInput {
+  display: inline-block;
+  width: 70vw;
+}
+
+.ReactTags__tagInput input.ReactTags__tagInputField,
+.ReactTags__tagInput input.ReactTags__tagInputField:focus {
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  font-size: 1.2em;
+  height: 31px;
+  margin: 0;
+  margin: 5px;
+  outline: none;
+  padding: 5px;
+  width: 100%;
+}
+
+/* Styles for selected tags */
+.ReactTags__selected {
+  overflow-y: scroll;
+}
+
+.ReactTags__selected span.ReactTags__tag {
+  color: #777;
+  background: #ffffff87;
+  border-radius: 3px;
+  display: inline-block;
+  font-size: 12px;
+  margin: 2px 5px;
+  padding: 6px;
+}
+
+.ReactTags__selected a.ReactTags__remove {
+  color: #aaa;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+/* Styles for suggestions */
+.ReactTags__suggestions {
+  color: #777;
+  margin-left: 5px;
+  margin-top: -7px;
+  position: absolute;
+}
+.ReactTags__suggestions ul {
+  background: #ffffff87;
+  border-radius: 2px;
+  list-style-type: none;
+  width: 200px;
+}
+.ReactTags__suggestions li {
+  border-bottom: 1px solid #eee;
+  margin: 0;
+  padding: 5px 10px;
+}
+.ReactTags__suggestions li mark {
+  background: none;
+  color: #616161;
+  font-weight: 600;
+  margin-left: -5px;
+  text-decoration: underline;
+}
+.ReactTags__suggestions ul li.ReactTags__activeSuggestion {
+  background: #fff;
+  cursor: pointer;
 }
 
 #buttons {
@@ -12,40 +160,22 @@ body {
 }
 
 button {
-  background-color: #a5b076;
-  flex-grow: 1;
-  // display: inline-block;
   color: #fff;
+  cursor: pointer;
   border: none;
-  // width: 50vw;
+  border-radius: 3px;
+  flex-grow: 1;
+  font-size: 1.1em;
+  font-weight: 500;
   height: 40px;
+  margin: 5px;
+  outline: none;
 }
 
-.mapStyle {
-  width: 550px;
-  height: 450px;
-  margin: 0;
+.add-bt {
+  background-color: #e37d71;
 }
 
-.app {
-  width: 550px;
-  height: 500px;
-}
-
-#findCenter {
-  position: absolute;
-  height: 24px;
-  width: 300px;
-  top: 10px;
-  left: 120px;
-}
-
-#pic {
-  width: 98.8vw;
-  height: 40px;
-  font-size: 1.2em;
-}
-
-.gm-fullscreen-control {
- display: none!important;
+.view-bt {
+  background-color: #a5b076;
 }

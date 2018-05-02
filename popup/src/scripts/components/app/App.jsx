@@ -90,12 +90,10 @@ class App extends Component {
 
         // clear fields
         document.getElementById('title').value = '';
-        document.getElementById('og-image').hidden = 1;
-        const tagsToHide = document.getElementsByClassName('ReactTags__tag');
-        for (let i = 0; i < tagsToHide.length; i++) {
-          tagsToHide[i].hidden = 1;
-        }
+        document.getElementsByClassName('og-image')[0].hidden = 1;
         document.getElementsByClassName('ReactTags__tagInputField')[0].value = '';
+        document.getElementsByClassName('ReactTags__selected')[0].hidden = 1;
+
       });
     }
   };
@@ -161,22 +159,27 @@ class App extends Component {
           type="text"
           ref="findCenter"
           onKeyPress={this.findCenter}
-          placeholder="find location"
+          placeholder="Find location"
         />
 
-        <textarea id="title" defaultValue={this.state.pageTitle} onChange={(e) => this.updatePageTitle(e)} />
-
-        <ReactTags
-          tags={this.state.tags}
-          suggestions={this.state.suggestions}
-          handleDelete={this.handleDelete.bind(this)}
-          handleAddition={this.handleAddition.bind(this)} />
-
-        <img id="og-image" src={this.state.pic} alt={this.state.pageTitle} height="70" />
+        <div id="container">
+          <div id="sub-container">
+            <textarea id="title" defaultValue={this.state.pageTitle} onChange={(e) => this.updatePageTitle(e)} placeholder="Add title"/>
+            <ReactTags
+              tags={this.state.tags}
+              inline={false}
+              suggestions={this.state.suggestions}
+              handleDelete={this.handleDelete.bind(this)}
+              handleAddition={this.handleAddition.bind(this)} />
+          </div>
+          <div id="pic">
+            <img className="og-image" src={this.state.pic} />
+          </div>
+        </div>
 
         <div id="buttons">
-          <button onClick={this.addMarker}>Add Marker</button>
-          <button onClick={this.viewMarkers}>View Markers</button>
+          <button className="add-bt" onClick={this.addMarker}>Add Marker</button>
+          <button className="view-bt" onClick={this.viewMarkers}>View Markers</button>
         </div>
 
       </div>
