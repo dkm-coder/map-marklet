@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700');
 
 body {
-  // background-color: #ebe3cd;
-  // background-color: #f4efe3;
   background-color: #f6f3e8;
   font-family: 'Roboto', sans-serif;
   margin: 0;
@@ -128,17 +126,20 @@ body {
   margin-top: -7px;
   position: absolute;
 }
+
 .ReactTags__suggestions ul {
   background: #ffffff87;
   border-radius: 2px;
   list-style-type: none;
   width: 200px;
 }
+
 .ReactTags__suggestions li {
   border-bottom: 1px solid #eee;
   margin: 0;
   padding: 5px 10px;
 }
+
 .ReactTags__suggestions li mark {
   background: none;
   color: #616161;
@@ -146,6 +147,7 @@ body {
   margin-left: -5px;
   text-decoration: underline;
 }
+
 .ReactTags__suggestions ul li.ReactTags__activeSuggestion {
   background: #fff;
   cursor: pointer;
