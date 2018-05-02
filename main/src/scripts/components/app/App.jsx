@@ -139,6 +139,14 @@ class App extends Component {
     }
   }
 
+  // Function that creates a shareable link
+  getShareableLink () {
+    chrome.identity.getProfileUserInfo((data) => {
+      const name = data.email.split('@')[0];
+      console.log(`Shareable link: http://www.baseUrlOfMapMarklet/${name}`);
+    });
+  }
+
   render () {
     if (!this.props.loaded) {
       return (<div>Loading...</div>);
@@ -149,7 +157,7 @@ class App extends Component {
         <div ref="map" className="mapStyle">
         </div>
         <div className="overlay">
-          <a href="#"><ShareBt size={40} color="#C54E4E"/></a>
+          <a href="#" onClick={this.getShareableLink}><ShareBt size={40} color="#C54E4E"/></a>
         </div>
       </div>
 
