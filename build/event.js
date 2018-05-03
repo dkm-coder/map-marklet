@@ -1252,6 +1252,12 @@ var reducers = function reducers() {
           return JSON.stringify(marker.latLng) !== action.latLng;
         })
       });
+
+    case 'RECEIVE_INFORMATION':
+      return _extends({}, state, {
+        markers: action.data.markers
+      });
+
     default:
       return state;
   }

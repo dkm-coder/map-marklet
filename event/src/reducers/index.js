@@ -20,6 +20,14 @@ const reducers = (state = initialState, action) => {
           return JSON.stringify(marker.latLng) !== action.latLng;
         }),
     };
+
+  case 'RECEIVE_INFORMATION':
+    return {
+      ...state,
+      markers:
+      action.data.markers,
+    };
+
   default:
     return state;
   }
