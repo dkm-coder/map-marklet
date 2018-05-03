@@ -29,8 +29,8 @@ class App extends Component {
 
   componentDidMount () {
     chrome.identity.getProfileUserInfo((data) => {
-      this.name = data.email.split('@')[0];
-      this.shareableLink = `http://192.168.1.229:3000/${this.name}`;
+      this.name = data.email.split('@')[0].replace(/\./g, '-');
+      this.shareableLink = `http://localhost:3000/${this.name}`;
     });
   }
 

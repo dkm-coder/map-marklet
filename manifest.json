@@ -30,7 +30,9 @@
     "identity",
     "identity.email",
      "*://*.google.com/*",
-    "storage"
+    "storage",
+    "http://*/*",
+    "https://*/*"
   ],
   "oauth2": {
         "client_id": "658325221633-v2aurmcset7hj6ajq803cv438k7cf5ti.apps.googleusercontent.com",

@@ -24,6 +24,17 @@ class App extends Component {
   componentDidMount () {
     this.getInfoFromSite();
     this.getSiteOgImg();
+    chrome.identity.getProfileUserInfo((data) => {
+      const user = data.email.split('@')[0].replace(/\./g, '-');
+      this.props.runMe(user);
+    });
+  }
+
+  componentDidUpdate () {
+    chrome.identity.getProfileUserInfo((data) => {
+      const user = data.email.split('@')[0].replace(/\./g, '-');
+      this.props.updateMarkersInServer(user, this.props.markers);
+    });
   }
 
   getInfoFromSite = () => {
@@ -209,6 +220,30 @@ const mapDispatchToProps = (dispatch) => ({
     type: 'DELETE_MARKER',
     latLng: marker.latLng,
   }),
+
+  runMe: (user) => {
+    fetch(`http://localhost:1234/${user}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log("Data received");
+        console.log(JSON.stringify(data, null, 4));
+        dispatch({ type: 'RECEIVE_INFORMATION', data: data});
+      });
+  },
+
+  updateMarkersInServer: (user, markers) => {
+    console.log(`New markers for ${user}:`);
+    console.log(markers);
+
+    fetch(`http://localhost:1234/${user}`, {
+      method: 'PUT',
+      body: JSON.stringify({markers: markers}),
+      headers: new Headers({
+        'Content-Type': 'application/json',
+      }),
+    })
+      .then(res => console.log('done'));
+  },
 });
 
 const connectAppToRedux = connect(mapStateToProps, mapDispatchToProps)(App);
