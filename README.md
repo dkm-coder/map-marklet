@@ -1,9 +1,9 @@
 # Map Marklet
 
-Map Marklet is a Chrome extension that lets users save urls to markers on a personal instance of Google Maps.
+Map Marklet is a Chrome extension that lets users save urls to markers on a personal instance of Google Maps and share with friends.
 
-![popup](./images/map-marklet-popup.png "Popup")
-![main-page](./images/map-marklet-main.png "Main")
+![popup](https://i.imgur.com/CsmatPR.png "Popup")
+![main-page](https://i.imgur.com/i89X4P4.png "Main")
 
 ## Motivation
 
@@ -22,6 +22,10 @@ While planning for road trips, I often save bookmarks to many websites which I t
 - Google Maps Api
 - Chrome Api
 
-## In development
-- User authentication via Chrome oauth2
-- Adding capability for user to save multiple maps/trips
+## Authors
+
+* Isabella Chen - [Github](https://github.com/isabellachen) - [LinkedIn](https://www.linkedin.com/in/isabella-chen-3196504/)
+
+* Dave Martínez - [Github](https://github.com/dkm-coder) - [LinkedIn](https://www.linkedin.com/in/dmartinezanim/)
+* Juliane Nagao - [Github](https://github.com/junagao) - [LinkedIn](https://www.linkedin.com/in/junagao/)
+* Kryshlynn Florante - [Github](https://github.com/mhalomy) - [LinkedIn](https://www.linkedin.com/in/kryshlynn-florante/)
